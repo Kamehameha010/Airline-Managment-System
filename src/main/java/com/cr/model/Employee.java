@@ -5,18 +5,20 @@ public class Employee extends Person {
     private String code;
     private String username;
     private String password;
+    private int idRol;
 
     public Employee() {
         super();
     }
 
-    public Employee(String name, String lastname, int identification, String phoneNumber, TypePerson idType,
-            String code, String username, String password) {
+    public Employee(String name, String lastname, int identification, String phoneNumber, String code, String username,
+            String password, int idRol) {
 
-        super(name, lastname, identification, phoneNumber, idType);
+        super(name, lastname, identification, phoneNumber);
         this.code = code;
         this.username = username;
         this.password = password;
+        this.idRol = idRol;
     }
 
     public int getIdEmployee() {
@@ -50,10 +52,19 @@ public class Employee extends Person {
         return this.password;
     }
 
+    public Employee setIdRol(int idRol) {
+        this.idRol = idRol;
+        return this;
+    }
+
+    public int getIdRol() {
+        return idRol;
+    }
+
     @Override
     public String toString() {
-        return String.format("Employee: { %s, id_employee:%d, code:%s, username:%s, password:%s }", super.toString(),
-                idEmployee, code, username, password);
+        return String.format("Employee: { %s, id_employee:%d, code:%s, username:%s, password:%s, id_rol:%d }",
+                super.toString(), idEmployee, code, username, password, idRol);
     }
 
 }

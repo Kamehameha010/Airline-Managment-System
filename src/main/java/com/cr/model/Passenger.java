@@ -12,9 +12,9 @@ public class Passenger extends Person {
         super();
     }
 
-    public Passenger(String name, String lastname, int identification, String phoneNumber, TypePerson idType,
+    public Passenger(String name, String lastname, int identification, String phoneNumber,
             int passport, String address, String nationality, int id_flight) {
-        super(name, lastname, identification, phoneNumber, idType);
+        super(name, lastname, identification, phoneNumber);
         this.passport = passport;
         this.address = address;
         this.nationality = nationality;

@@ -5,17 +5,17 @@ public class Person extends Identity {
     private String lastname;
     private int identification;
     private String phoneNumber;
-    private TypePerson idType;
+    
 
     public Person() {
     }
 
-    public Person(String name, String lastname, int identification, String phoneNumber, TypePerson idType) {
+    public Person(String name, String lastname, int identification, String phoneNumber) {
         this.name = name;
         this.lastname = lastname;
         this.identification = identification;
         this.phoneNumber = phoneNumber;
-        this.idType = idType;
+        
     }
 
     public Person setName(String name) {
@@ -55,23 +55,15 @@ public class Person extends Identity {
         return this;
     }
 
-    public String getPhoneNumber(String phoneNumber) {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
-    public Person setidType(int idType) {
-        this.idType = TypePerson.valueOf(idType);
-        return this;
-    }
-
-    public TypePerson getIdType() {
-        return this.idType;
-    }
 
     @Override
     public String toString() {
-        return String.format("Person: { id:%d, name:%s, lastname:%s, identification:%d, phone_number:%s, id_type:%s}",
-                getId(), name, lastname, identification, phoneNumber, idType);
+        return String.format("Person: { id:%d, name:%s, lastname:%s, identification:%d, phone_number:%s}",
+                getId(), name, lastname, identification, phoneNumber);
     }
 
 }

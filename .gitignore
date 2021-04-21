@@ -25,3 +25,4 @@ hs_err_pid*
 #
 AirlineSystem\.db
 airplane.png
+*.props

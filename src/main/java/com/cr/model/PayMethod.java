@@ -12,7 +12,7 @@ public enum PayMethod {
         this.m_value = value;
     }
 
-    private static Map map = new HashMap<>();
+    private static Map<Object, Object> map = new HashMap<>();
 
     static {
         for (var payMethod : PayMethod.values()) {
