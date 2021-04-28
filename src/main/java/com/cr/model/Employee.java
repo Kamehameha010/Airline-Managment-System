@@ -21,6 +21,11 @@ public class Employee extends Person {
         this.idRol = idRol;
     }
 
+    public Employee setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
+        return this;
+    }
+
     public int getIdEmployee() {
         return this.idEmployee;
     }

@@ -12,13 +12,18 @@ public class Passenger extends Person {
         super();
     }
 
-    public Passenger(String name, String lastname, int identification, String phoneNumber,
-            int passport, String address, String nationality, int id_flight) {
+    public Passenger(String name, String lastname, int identification, String phoneNumber, int passport, String address,
+            String nationality, int id_flight) {
         super(name, lastname, identification, phoneNumber);
         this.passport = passport;
         this.address = address;
         this.nationality = nationality;
         this.idFlight = id_flight;
+    }
+
+    public Passenger setIdPassenger(int idPassenger) {
+        this.idPassenger = idPassenger;
+        return this;
     }
 
     public int getIdPassenger() {
@@ -48,7 +53,7 @@ public class Passenger extends Person {
         return this;
     }
 
-    public String getNaitonality() {
+    public String getNationality() {
         return this.nationality;
     }
 
