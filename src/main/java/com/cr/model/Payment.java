@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Payment extends Identity {
     private int idPassenger;
-    private int mount;
+    private double mount;
     private PayMethod payMethod;
     private Date date;
 
@@ -26,12 +26,12 @@ public class Payment extends Identity {
         this.date = date;
     }
 
-    public Payment setMount(int mount) {
+    public Payment setMount(double mount) {
         this.mount = mount;
         return this;
     }
 
-    public int getMount() {
+    public double getMount() {
         return this.mount;
     }
 

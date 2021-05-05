@@ -1,18 +1,13 @@
 package com.cr.start;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import com.cr.model.Employee;
-import com.cr.model.Person;
 import com.cr.services.repository.EmployeeRepository;
-import com.cr.tools.FileProperties;
 import com.jcabi.aspects.Async;
 
 /**
@@ -30,7 +25,7 @@ public class App {
 
         Field[] fields = emp.getClass().getDeclaredFields();
 
-        List<String> actualFieldNames = getFieldNames(fields);
+        getFieldNames(fields).forEach(x-> System.out.println(x));
         var rep = new EmployeeRepository();
         //rep.create(emp);
         var r = rep.find(1);
@@ -49,7 +44,7 @@ public class App {
         return CompletableFuture.completedFuture("value");
     }
 
-    private static List<String> getFieldNames(Field[] fields) {
+    private static Iterable<String> getFieldNames(Field[] fields) {
         List<String> fieldNames = new ArrayList<>();
         for (Field field : fields) {
             System.out.println(field.getType());
@@ -57,4 +52,6 @@ public class App {
         }
         return fieldNames;
     }
+
+
 }

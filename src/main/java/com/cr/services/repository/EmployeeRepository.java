@@ -51,7 +51,7 @@ public class EmployeeRepository implements IRepositoryServices<Employee> {
             cstm.setString(5, model.getCode());
             cstm.setString(6, model.getUsername());
             cstm.setString(7, model.getPassword());
-            cstm.setString(8, null);
+            cstm.setInt(8, model.getIdRol());
             cstm.execute();
 
         } catch (SQLException e) {
