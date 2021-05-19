@@ -1,6 +1,7 @@
 package com.cr.model;
 
-public class Plane extends Identity {
+public class Plane {
+    private int idPlane;
     private String code;
     private String name;
     private int capacity;
@@ -13,6 +14,14 @@ public class Plane extends Identity {
         this.code = code;
         this.name = name;
         this.capacity = capacity;
+    }
+
+    public int getIdPlane() {
+        return idPlane;
+    }
+
+    public void setIdPlane(int idPlane) {
+        this.idPlane = idPlane;
     }
 
     public Plane setCode(String code) {
@@ -44,7 +53,7 @@ public class Plane extends Identity {
 
     @Override
     public String toString() {
-        return String.format("Plane: { id_plane:%d, name:%s, code:%s, capacity:%d}", getId(), name, code, capacity);
+        return String.format("Plane: { id_plane:%d, name:%s, code:%s, capacity:%d}", idPlane, name, code, capacity);
     }
 
 }

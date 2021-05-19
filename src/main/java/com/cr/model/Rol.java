@@ -1,7 +1,8 @@
 package com.cr.model;
 
-public class Rol extends Identity {
+public class Rol {
 
+    private int idRol;
     private String name;
     private String description;
 
@@ -11,6 +12,14 @@ public class Rol extends Identity {
     public Rol(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public int getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
     public Rol setName(String name) {
@@ -33,7 +42,7 @@ public class Rol extends Identity {
 
     @Override
     public String toString() {
-        return String.format("Rol: {id_rol:%d, name:%s, description:%s}", getId(), name, description);
+        return String.format("Rol: {id_rol:%d, name:%s, description:%s}", idRol, name, description);
     }
 
 }

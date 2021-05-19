@@ -1,7 +1,8 @@
-package com.cr.db.mysql;
+package com.cr.db.jdbc.mysql;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,18 +21,12 @@ public class MysqlConnection implements IConnection {
 
     private Predicate<String> checkFilename = str -> str == null || str.trim().length() == 0;
 
-    public MysqlConnection(String filename) {
+    public MysqlConnection(String filename) throws IOException{
 
         if (checkFilename.test(filename)) {
             filename = "Configuration.props";
         }
-
-        try {
-            props = FileProperties.readFile(new FileReader(filename));
-        } catch (FileNotFoundException e) {
-
-            System.out.println("Not found file");
-        }
+        props = FileProperties.readFile(filename);
 
     }
 

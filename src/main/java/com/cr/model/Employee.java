@@ -1,8 +1,10 @@
 package com.cr.model;
 
-public class Employee extends Person {
+public class Employee {
     private int idEmployee;
-    private String code;
+    private String name;
+    private String lastname;
+    private int identification;
     private String username;
     private String password;
     private int idRol;
@@ -11,11 +13,11 @@ public class Employee extends Person {
         super();
     }
 
-    public Employee(String name, String lastname, int identification, String phoneNumber, String code, String username,
-            String password, int idRol) {
+    public Employee(String name, String lastname, int identification, String username, String password, int idRol) {
 
-        super(name, lastname, identification, phoneNumber);
-        this.code = code;
+        this.name = name;
+        this.lastname = lastname;
+        this.identification = identification;
         this.username = username;
         this.password = password;
         this.idRol = idRol;
@@ -30,13 +32,36 @@ public class Employee extends Person {
         return this.idEmployee;
     }
 
-    public Employee setCode(String code) {
-        this.code = code;
+    public Employee setName(String name) {
+        this.name = name.toUpperCase();
         return this;
     }
 
-    public String getCode() {
-        return this.code;
+    public String getName() {
+        return this.name;
+    }
+
+    public Employee setLastName(String lastname) {
+        this.lastname = lastname.toUpperCase();
+        return this;
+    }
+
+    public String getLastName() {
+        return this.lastname;
+    }
+
+    /*
+     * public String getFullName() { return String.format("%s %s", name, lastname);
+     * }
+     */
+
+    public Employee setIdentification(int identification) {
+        this.identification = identification;
+        return this;
+    }
+
+    public int getIdentification() {
+        return this.identification;
     }
 
     public Employee setUsername(String username) {
@@ -68,8 +93,9 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return String.format("Employee: { %s, id_employee:%d, code:%s, username:%s, password:%s, id_rol:%d }",
-                super.toString(), idEmployee, code, username, password, idRol);
+        return String.format(
+                "Employee: {id_employee:%d, name:%s, lastname:%s, identification:%s, username:%s, password:%s, id_rol:%d }",
+                idEmployee, name, lastname, identification, username, password, idRol);
     }
 
 }

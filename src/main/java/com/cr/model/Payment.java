@@ -2,13 +2,27 @@ package com.cr.model;
 
 import java.util.Date;
 
-public class Payment extends Identity {
+public class Payment {
+
+    private int idPayment;
     private int idPassenger;
     private double mount;
     private PayMethod payMethod;
     private Date date;
 
     public Payment() {
+    }
+
+    public int getIdPayment() {
+        return idPayment;
+    }
+
+    public void setIdPayment(int idPayment) {
+        this.idPayment = idPayment;
+    }
+
+    public void setPayMethod(PayMethod payMethod) {
+        this.payMethod = payMethod;
     }
 
     public Payment setIdPassenger(int idPassenger) {
@@ -55,7 +69,7 @@ public class Payment extends Identity {
 
     @Override
     public String toString() {
-        return String.format("Payment: {id_payment:%d, id_passenger:%d, mount:%d, pay_method:%s, date:%s}", getId(),
+        return String.format("Payment: {id_payment:%d, id_passenger:%d, mount:%d, pay_method:%s, date:%s}", idPayment,
                 idPassenger, mount, payMethod, date);
     }
 

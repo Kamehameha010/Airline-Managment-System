@@ -1,15 +1,18 @@
-package com.cr.services.repository;
+package com.cr.services.repository.jdbc;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.cr.db.IConnection;
-import com.cr.db.mysql.MysqlConnection;
+import com.cr.db.jdbc.mysql.MysqlConnection;
 import com.cr.model.Plane;
+import com.cr.services.repository.IRepositoryServices;
 
 public class PlaneRepository implements IRepositoryServices<Plane> {
 
@@ -27,9 +30,8 @@ public class PlaneRepository implements IRepositoryServices<Plane> {
             SELECT * FROM plane WHERE id_plane=?
             """;
     private final String GET_ALL_QUERY = "SELECT * FROM plane";
-    private final String DELETE_QUERY = "DELETE FROM plane WHERE id_plane = ?";
 
-    public PlaneRepository() {
+    public PlaneRepository() throws IOException {
 
         _connection = new MysqlConnection(null);
     }
@@ -57,7 +59,7 @@ public class PlaneRepository implements IRepositoryServices<Plane> {
 
         try {
             pstm = conn.prepareStatement(UPDATE_QUERY);
-            pstm.setInt(1, model.getId());
+            pstm.setInt(1, model.getIdPlane());
             pstm.setString(2, model.getCode());
             pstm.setString(3, model.getName());
             pstm.setInt(4, model.getCapacity());
@@ -71,47 +73,6 @@ public class PlaneRepository implements IRepositoryServices<Plane> {
     }
 
     @Override
-    public void delete(int id) {
-        conn = _connection.connect();
-        try {
-            pstm = conn.prepareStatement(DELETE_QUERY);
-            pstm.setInt(1, id);
-            pstm.execute();
-        } catch (SQLException e) {
-            System.err.println("err");
-        } finally {
-            _connection.close(pstm);
-            _connection.close(conn);
-        }
-    }
-
-    @Override
-    public Plane find(int id) {
-        conn = _connection.connect();
-        Plane plane = null;
-        try {
-            pstm = conn.prepareStatement(FIND_QUERY);
-            pstm.setInt(1, id);
-            rs = pstm.executeQuery();
-            if (rs.next()) {
-                plane = new Plane();
-                plane.setId(rs.getInt(1));
-                plane.setCode(rs.getString(2));
-                plane.setName(rs.getString(3));
-                plane.setCapacity(rs.getInt(4));
-            }
-
-        } catch (SQLException e) {
-            System.err.println("error");
-        } finally {
-            _connection.close(rs);
-            _connection.close(pstm);
-            _connection.close(conn);
-        }
-        return plane;
-    }
-
-    @Override
     public List<Plane> getAll() {
         conn = _connection.connect();
         List<Plane> planes = new ArrayList<>();
@@ -120,7 +81,7 @@ public class PlaneRepository implements IRepositoryServices<Plane> {
             rs = pstm.executeQuery();
             while (rs.next()) {
                 var plane = new Plane();
-                plane.setId(rs.getInt(1));
+                plane.setIdPlane(rs.getInt(1));
                 plane.setCode(rs.getString(2));
                 plane.setName(rs.getString(3));
                 plane.setCapacity(rs.getInt(4));
@@ -134,6 +95,16 @@ public class PlaneRepository implements IRepositoryServices<Plane> {
             _connection.close(conn);
         }
         return planes;
+    }
+
+    @Override
+    public Plane find(Predicate<Plane> filter) {
+        for (Plane plane : getAll()) {
+            if (filter.test(plane)) {
+                return plane;
+            }
+        }
+        return null;
     }
 
 }

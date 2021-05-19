@@ -2,40 +2,34 @@ package com.cr.start;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import com.cr.model.Employee;
-import com.cr.services.repository.EmployeeRepository;
+import com.cr.services.repository.jdbc.RepositoryJDBC;
 import com.jcabi.aspects.Async;
 
-/**
- * Hello world!
- *
- */
 public class App {
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException, SQLException {
 
-        var emp = new Employee();
-        emp.setCode("code").setUsername("username").setPassword("password").setName("name").setLastName("lastname")
-                .setIdentification(25568987).setPhoneNumber("phoneNumber");
-
-        System.out.println(emp);
-
-        Field[] fields = emp.getClass().getDeclaredFields();
-
-        getFieldNames(fields).forEach(x-> System.out.println(x));
-        var rep = new EmployeeRepository();
-        //rep.create(emp);
-        var r = rep.find(1);
-        System.out.println(r);
-/* 
-        for (Employee employee : r) {
-            System.out.println(employee);
-        } */
         
-
+        /*
+         * var model = new Employee();
+         * 
+         * 
+         * 
+         * 
+         * var jdbc = new RepositoryJDBC<Employee>();
+         * 
+         * //System.out.println(model.getClass().getSuperclass().getSuperclass().
+         * getMethods());
+         * 
+         * for (var string : model.getClass().getDeclaredMethods()){
+         * System.out.println(string.getName()); }
+         */
     }
 
     @Async
@@ -53,5 +47,50 @@ public class App {
         return fieldNames;
     }
 
+}
+
+class Response {
+
+    public Status status;
+    public List<Data> data;
+
+    @Override
+    public String toString() {
+        return status.toString();
+    }
+
+}
+
+class Status {
+
+    public Date timestamp;
+    public int error_code;
+    public String error_message;
+    public int elapsed;
+    public int credit_count;
+    public String notice;
+
+    @Override
+    public String toString() {
+        return String.format("status:{ times:%s, err_code:%d, err_msg:%s, elap:%d, credit:%d, notice:%s}", timestamp,
+                error_code, error_message, elapsed, credit_count, notice);
+    }
+}
+
+class Data {
+
+    public int id;
+    public String name;
+    public String symbol;
+    public String slug;
+    public int is_active;
+    public int rank;
+    public Object plataform;
+
+    @Override
+    public String toString() {
+        return String.format("data:{id:%d, name:%s, symbol:%s, slug:%s, is_active:%d, rank:%d}", id, name, symbol, slug,
+                is_active, rank);
+    }
 
 }

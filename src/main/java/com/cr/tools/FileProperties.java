@@ -8,24 +8,16 @@ import java.util.Properties;
 
 public class FileProperties {
 
-    public static void writeFile(FileWriter fileWriter, HashMap<String, String> propities, String comments) {
+    public static void writeFile(String filename, HashMap<String, String> propities, String comments)
+            throws IOException {
         var prop = new Properties();
         propities.forEach((key, value) -> prop.setProperty(key, value));
-        try {
-            prop.store(fileWriter, comments);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        prop.store(new FileWriter(filename), comments);
     }
 
-    public static Properties readFile(FileReader filename) {
-
+    public static Properties readFile(String filename) throws IOException {
         var properties = new Properties();
-        try {
-            properties.load(filename);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        properties.load(new FileReader(filename));
         return properties;
     }
 }

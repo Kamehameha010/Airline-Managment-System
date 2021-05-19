@@ -1,8 +1,6 @@
 package com.cr.services.repository;
 
-import com.cr.model.Identity;
-
-public interface ICreate<T extends Identity> {
+public interface ICreate<T> {
 
     void create(T model);
 }

@@ -2,7 +2,8 @@ package com.cr.model;
 
 import java.sql.Date;
 
-public class Flight extends Identity {
+public class Flight {
+    private int idFlight;
     private String code;
     private String name;
     private String source;
@@ -20,6 +21,15 @@ public class Flight extends Identity {
         this.destination = destination;
         this.date = date;
         this.idPlane = idPlane;
+    }
+
+    public Flight setIdFlight(int idFlight) {
+        this.idFlight = idFlight;
+        return this;
+    }
+
+    public int getIdFlight() {
+        return this.idFlight;
     }
 
     public Flight setCode(String code) {
@@ -78,7 +88,7 @@ public class Flight extends Identity {
 
     @Override
     public String toString() {
-        return String.format("Flight:{ id_flight:%d, name:%s, code:%s, src:%s, dst:%s, date:%s, id_plane:%d}", getId(),
+        return String.format("Flight:{ id_flight:%d, name:%s, code:%s, src:%s, dst:%s, date:%s, id_plane:%d}", idFlight,
                 name, code, source, destination, date, idPlane);
     }
 }
