@@ -23,67 +23,60 @@ public class Flight {
         this.idPlane = idPlane;
     }
 
-    public Flight setIdFlight(int idFlight) {
-        this.idFlight = idFlight;
-        return this;
-    }
-
     public int getIdFlight() {
-        return this.idFlight;
+        return idFlight;
     }
 
-    public Flight setCode(String code) {
-        this.code = code;
-        return this;
+    public void setIdFlight(int idFlight) {
+        this.idFlight = idFlight;
     }
 
     public String getCode() {
-        return this.code;
+        return code;
     }
 
-    public Flight setName(String name) {
-        this.name = name;
-        return this;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public Flight setSource(String source) {
-        this.source = source;
-        return this;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSource() {
-        return this.source;
+        return source;
     }
 
-    public Flight setDestination(String destination) {
-        this.destination = destination;
-        return this;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getDestination() {
-        return this.destination;
+        return destination;
     }
 
-    public Flight setDate(Date date) {
-        this.date = date;
-        return this;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
-    public Flight setIdPlane(int idPlane) {
-        this.idPlane = idPlane;
-        return this;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getIdPlane() {
-        return this.idPlane;
+        return idPlane;
+    }
+
+    public void setIdPlane(int idPlane) {
+        this.idPlane = idPlane;
     }
 
     @Override

@@ -24,31 +24,28 @@ public class Plane {
         this.idPlane = idPlane;
     }
 
-    public Plane setCode(String code) {
-        this.code = code;
-        return this;
-    }
-
     public String getCode() {
-        return this.code;
+        return code;
     }
 
-    public Plane setName(String name) {
-        this.name = name;
-        return this;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public Plane setCapacity(int capacity) {
-        this.capacity = capacity;
-        return this;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getCapacity() {
-        return this.capacity;
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     @Override

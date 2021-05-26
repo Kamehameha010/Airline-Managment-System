@@ -1,47 +1,45 @@
 package com.cr.services.repository.jdbc;
 
+import java.beans.IntrospectionException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 import com.cr.db.IConnection;
+import com.cr.db.jdbc.helper.IQueryHelper;
+import com.cr.db.jdbc.helper.PreparedStamentHelper;
 import com.cr.db.jdbc.mysql.MysqlConnection;
+import com.cr.db.jdbc.queries.PaymentQuery;
 import com.cr.model.Payment;
 import com.cr.services.repository.ICreate;
 import com.cr.services.repository.IFind;
 
 public class PaymentRepository implements ICreate<Payment>, IFind<Payment> {
 
-    IConnection _connection;
-    Connection conn;
-    PreparedStatement pstm;
-    ResultSet rs;
-
-    private final String INSERT_QUERY = "INSERT INTO oayment VALUES(null,?,?,?,?)";
-    private final String GET_ALL_QUERY = "SELECT * FROM payment";
+    private IConnection _connection;
+    private IQueryHelper<PreparedStatement, Payment> _statementHelper;
+    private Connection conn;
+    private PreparedStatement pstm;
 
     public PaymentRepository() throws IOException {
         _connection = new MysqlConnection(null);
+        _statementHelper = new PreparedStamentHelper<>();
     }
 
     @Override
     public void create(Payment model) {
         conn = _connection.connect();
         try {
-            pstm = conn.prepareStatement(INSERT_QUERY);
-            pstm.setInt(1, model.getIdPassenger());
-            pstm.setDouble(2, model.getMount());
-            pstm.setInt(3, model.getPayMethod().getValue());
-            pstm.setDate(4, (Date) model.getDate());
+            pstm = _statementHelper.PreparedQuery(conn, model, PaymentQuery.INSERT_PAYMENT);
             pstm.executeUpdate();
 
-        } catch (SQLException e) {
+        } catch (SQLException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | IntrospectionException e) {
             System.err.println("error");
         } finally {
             _connection.close(pstm);
@@ -54,24 +52,12 @@ public class PaymentRepository implements ICreate<Payment>, IFind<Payment> {
         conn = _connection.connect();
         List<Payment> payments = new ArrayList<>();
         try {
-            rs = conn.createStatement().executeQuery(GET_ALL_QUERY);
-            if (rs.next()) {
-                Payment payment = new Payment();
-                payment.setIdPayment(rs.getInt(1));
-                payment.setIdPassenger(rs.getInt(2));
-                payment.setMount(rs.getDouble(3));
-                payment.setPayMethod(rs.getInt(4));
-                payment.setDate(rs.getDate(5));
+            payments = _statementHelper.ReturnDataQuey(conn, Payment.class, PaymentQuery.ALL_PAYMENT);
 
-                payments.add(payment);
-
-            }
-
-        } catch (SQLException e) {
+        } catch (SQLException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | IntrospectionException e) {
 
             System.err.println("Error Find");
         } finally {
-            _connection.close(rs);
             _connection.close(conn);
 
         }

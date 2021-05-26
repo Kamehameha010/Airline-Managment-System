@@ -26,81 +26,68 @@ public class Passenger {
         this.idFlight = id_flight;
     }
 
-    public Passenger setIdPassenger(int idPassenger) {
-        this.idPassenger = idPassenger;
-        return this;
-    }
-
     public int getIdPassenger() {
-        return this.idPassenger;
+        return idPassenger;
     }
 
-    public Passenger setName(String name) {
-        this.name = name.toUpperCase();
-        return this;
+    public void setIdPassenger(int idPassenger) {
+        this.idPassenger = idPassenger;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public Passenger setLastName(String lastname) {
-        this.lastname = lastname.toUpperCase();
-        return this;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return this.lastname;
+    public String getLastname() {
+        return lastname;
     }
 
-    /*
-     * public String getFullName() { return String.format("%s %s", name, lastname);
-     * }
-     */
-
-    public Passenger setEmail(String email) {
-        this.email = email;
-        return this;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
-    public Passenger setPassport(int passport) {
-        this.passport = passport;
-        return this;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getPassport() {
-        return this.passport;
+        return passport;
     }
 
-    public Passenger setAddress(String address) {
-        this.address = address;
-        return this;
+    public void setPassport(int passport) {
+        this.passport = passport;
     }
 
     public String getAddress() {
-        return this.address;
+        return address;
     }
 
-    public Passenger setNationality(String nationality) {
-        this.nationality = nationality;
-        return this;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getNationality() {
-        return this.nationality;
+        return nationality;
     }
 
-    public Passenger setIdFlight(int idFlight) {
-        this.idFlight = idFlight;
-        return this;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
     public int getIdFlight() {
-        return this.idFlight;
+        return idFlight;
+    }
+
+    public void setIdFlight(int idFlight) {
+        this.idFlight = idFlight;
     }
 
     @Override

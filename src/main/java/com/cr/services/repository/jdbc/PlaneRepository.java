@@ -1,51 +1,44 @@
 package com.cr.services.repository.jdbc;
 
+import java.beans.IntrospectionException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 import com.cr.db.IConnection;
+import com.cr.db.jdbc.helper.IQueryHelper;
+import com.cr.db.jdbc.helper.PreparedStamentHelper;
 import com.cr.db.jdbc.mysql.MysqlConnection;
+import com.cr.db.jdbc.queries.PlaneQuery;
 import com.cr.model.Plane;
 import com.cr.services.repository.IRepositoryServices;
 
 public class PlaneRepository implements IRepositoryServices<Plane> {
 
-    IConnection _connection;
-    Connection conn;
-    PreparedStatement pstm;
-    ResultSet rs;
-
-    private final String INSERT_QUERY = "INSERT INTO plane VALUES(null,?,?,?)";
-    private final String UPDATE_QUERY = """
-            UPDATE plane SET code=?, name=?, capacity=?
-            WHERE id_plane=?
-            """;
-    private final String FIND_QUERY = """
-            SELECT * FROM plane WHERE id_plane=?
-            """;
-    private final String GET_ALL_QUERY = "SELECT * FROM plane";
+    private IConnection _connection;
+    private Connection conn;
+    private PreparedStatement pstm;
+    private IQueryHelper<PreparedStatement, Plane> _statementHelper;
 
     public PlaneRepository() throws IOException {
 
         _connection = new MysqlConnection(null);
+        _statementHelper = new PreparedStamentHelper<>();
     }
 
     @Override
     public void create(Plane model) {
         conn = _connection.connect();
         try {
-            pstm = conn.prepareStatement(INSERT_QUERY);
-            pstm.setString(1, model.getCode());
-            pstm.setString(2, model.getName());
-            pstm.setInt(3, model.getCapacity());
+            pstm = _statementHelper.PreparedQuery(conn, model, PlaneQuery.INSERT_PLANE);
             pstm.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | IntrospectionException e) {
             System.err.println("error");
         } finally {
             _connection.close(pstm);
@@ -58,13 +51,10 @@ public class PlaneRepository implements IRepositoryServices<Plane> {
         conn = _connection.connect();
 
         try {
-            pstm = conn.prepareStatement(UPDATE_QUERY);
-            pstm.setInt(1, model.getIdPlane());
-            pstm.setString(2, model.getCode());
-            pstm.setString(3, model.getName());
-            pstm.setInt(4, model.getCapacity());
+            pstm = _statementHelper.PreparedQuery(conn, model, PlaneQuery.UPDATE_PLANE);
             pstm.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | IntrospectionException e) {
             System.err.println("error");
         } finally {
             _connection.close(pstm);
@@ -77,21 +67,10 @@ public class PlaneRepository implements IRepositoryServices<Plane> {
         conn = _connection.connect();
         List<Plane> planes = new ArrayList<>();
         try {
-            pstm = conn.prepareStatement(GET_ALL_QUERY);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                var plane = new Plane();
-                plane.setIdPlane(rs.getInt(1));
-                plane.setCode(rs.getString(2));
-                plane.setName(rs.getString(3));
-                plane.setCapacity(rs.getInt(4));
-                planes.add(plane);
-            }
-        } catch (SQLException e) {
+            planes = _statementHelper.ReturnDataQuey(conn, Plane.class, PlaneQuery.ALL_PLANE);
+        } catch (SQLException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | IntrospectionException e) {
             System.err.println("error");
         } finally {
-            _connection.close(rs);
-            _connection.close(pstm);
             _connection.close(conn);
         }
         return planes;

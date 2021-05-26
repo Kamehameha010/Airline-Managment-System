@@ -13,6 +13,13 @@ public class Payment {
     public Payment() {
     }
 
+    public Payment(int idPassenger, double mount, PayMethod payMethod, Date date) {
+        this.idPassenger = idPassenger;
+        this.mount = mount;
+        this.payMethod = payMethod;
+        this.date = date;
+    }
+
     public int getIdPayment() {
         return idPayment;
     }
@@ -21,50 +28,36 @@ public class Payment {
         this.idPayment = idPayment;
     }
 
+    public int getIdPassenger() {
+        return idPassenger;
+    }
+
+    public void setIdPassenger(int idPassenger) {
+        this.idPassenger = idPassenger;
+    }
+
+    public double getMount() {
+        return mount;
+    }
+
+    public void setMount(double mount) {
+        this.mount = mount;
+    }
+
+    public PayMethod getPayMethod() {
+        return payMethod;
+    }
+
     public void setPayMethod(PayMethod payMethod) {
         this.payMethod = payMethod;
     }
 
-    public Payment setIdPassenger(int idPassenger) {
-        this.idPassenger = idPassenger;
-        return this;
-    }
-
-    public int getIdPassenger() {
-        return this.idPassenger;
-    }
-
-    public Payment(int mount, PayMethod payMethod, Date date) {
-        this.mount = mount;
-        this.payMethod = payMethod;
-        this.date = date;
-    }
-
-    public Payment setMount(double mount) {
-        this.mount = mount;
-        return this;
-    }
-
-    public double getMount() {
-        return this.mount;
-    }
-
-    public Payment setPayMethod(int payMethod) {
-        this.payMethod = PayMethod.valueOf(payMethod);
-        return this;
-    }
-
-    public PayMethod getPayMethod() {
-        return this.payMethod;
-    }
-
-    public Payment setDate(Date date) {
-        this.date = date;
-        return this;
-    }
-
     public Date getDate() {
-        return this.date;
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override

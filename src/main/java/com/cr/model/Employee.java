@@ -23,72 +23,60 @@ public class Employee {
         this.idRol = idRol;
     }
 
-    public Employee setIdEmployee(int idEmployee) {
-        this.idEmployee = idEmployee;
-        return this;
-    }
-
     public int getIdEmployee() {
-        return this.idEmployee;
+        return idEmployee;
     }
 
-    public Employee setName(String name) {
-        this.name = name.toUpperCase();
-        return this;
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public Employee setLastName(String lastname) {
-        this.lastname = lastname.toUpperCase();
-        return this;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return this.lastname;
+    public String getLastname() {
+        return lastname;
     }
 
-    /*
-     * public String getFullName() { return String.format("%s %s", name, lastname);
-     * }
-     */
-
-    public Employee setIdentification(int identification) {
-        this.identification = identification;
-        return this;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public int getIdentification() {
-        return this.identification;
+        return identification;
     }
 
-    public Employee setUsername(String username) {
-        this.username = username;
-        return this;
+    public void setIdentification(int identification) {
+        this.identification = identification;
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
-    public Employee setPassword(String password) {
-        this.password = password;
-        return this;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
-    public Employee setIdRol(int idRol) {
-        this.idRol = idRol;
-        return this;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getIdRol() {
         return idRol;
+    }
+
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
     @Override

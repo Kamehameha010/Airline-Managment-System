@@ -22,22 +22,20 @@ public class Rol {
         this.idRol = idRol;
     }
 
-    public Rol setName(String name) {
-        this.name = name;
-        return this;
-    }
-
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public Rol setDescription(String description) {
-        this.description = description;
-        return this;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
