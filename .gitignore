@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 
+
 # Log file
 *.log
 
@@ -23,6 +24,9 @@
 hs_err_pid*
 
 #
+*.form
+*.txt
+*.lst
 AirlineSystem\.db
 airplane.png
 *.props

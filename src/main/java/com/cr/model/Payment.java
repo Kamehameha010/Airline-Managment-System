@@ -6,16 +6,16 @@ public class Payment {
 
     private int idPayment;
     private int idPassenger;
-    private double mount;
+    private double amount;
     private PayMethod payMethod;
     private Date date;
 
     public Payment() {
     }
 
-    public Payment(int idPassenger, double mount, PayMethod payMethod, Date date) {
+    public Payment(int idPassenger, double amount, PayMethod payMethod, Date date) {
         this.idPassenger = idPassenger;
-        this.mount = mount;
+        this.amount = amount;
         this.payMethod = payMethod;
         this.date = date;
     }
@@ -36,12 +36,12 @@ public class Payment {
         this.idPassenger = idPassenger;
     }
 
-    public double getMount() {
-        return mount;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setMount(double mount) {
-        this.mount = mount;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public PayMethod getPayMethod() {
@@ -62,8 +62,8 @@ public class Payment {
 
     @Override
     public String toString() {
-        return String.format("Payment: {id_payment:%d, id_passenger:%d, mount:%d, pay_method:%s, date:%s}", idPayment,
-                idPassenger, mount, payMethod, date);
+        return String.format("Payment: {id_payment:%d, id_passenger:%d, amount:%d, pay_method:%s, date:%s}", idPayment,
+                idPassenger, amount, payMethod, date);
     }
 
 }
