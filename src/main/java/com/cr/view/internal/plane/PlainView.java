@@ -31,10 +31,10 @@ public class PlainView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        txtCode = new javax.swing.JTextField();
+        txtCapacity = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -50,39 +50,39 @@ public class PlainView extends javax.swing.JInternalFrame {
         jLabel4.setText("Code:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
-        jButton1.setText("Save");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 90, -1));
+        btnSave.setText("Save");
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 90, -1));
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCode.setName("code"); // NOI18N
+        txtCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtCodeActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, -1));
+        getContentPane().add(txtCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, -1));
 
-        jTextField2.setText("jTextField1");
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, -1));
+        txtCapacity.setName("capacity"); // NOI18N
+        getContentPane().add(txtCapacity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, -1));
 
-        jTextField3.setText("jTextField1");
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 240, -1));
+        txtName.setName("name"); // NOI18N
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 240, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCodeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtCapacity;
+    private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

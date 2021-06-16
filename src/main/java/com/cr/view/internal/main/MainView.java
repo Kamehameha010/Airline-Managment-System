@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cr.view.internal;
+package com.cr.view.internal.main;
+
+import com.cr.model.Employee;
 
 /**
  *
@@ -11,10 +13,17 @@ package com.cr.view.internal;
  */
 public class MainView extends javax.swing.JFrame {
 
+    private Employee _employee;
+
     /**
      * Creates new form MaiinView
      */
     public MainView() {
+        initComponents();
+    }
+
+    public MainView(Employee employee) {
+        _employee = employee;
         initComponents();
     }
 

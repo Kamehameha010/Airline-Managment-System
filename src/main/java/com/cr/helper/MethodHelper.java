@@ -1,4 +1,4 @@
-package com.cr.db.jdbc.helper;
+package com.cr.helper;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;

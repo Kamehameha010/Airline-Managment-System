@@ -5,19 +5,36 @@
  */
 package com.cr.view.external;
 
+import com.cr.controller.PassengerController;
+import com.cr.model.Passenger;
+import java.awt.Container;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
+
 /**
  *
  * @author joel010
  */
 public class Reservation extends javax.swing.JFrame {
 
+    private PassengerController controller;
+
     /**
      * Creates new form Reservation
      */
-    public Reservation() {
+    public Reservation() throws IOException {
         initComponents();
+        controller = new PassengerController();
         this.buttonGroup1.add(this.rbCredit);
         this.buttonGroup1.add(this.rbDebit);
+        var t =getDataComponents(this.getContentPane());
+        System.out.println(t);
     }
 
     /**
@@ -32,12 +49,6 @@ public class Reservation extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         btnPaymentSave = new javax.swing.JButton();
         lbReservation = new javax.swing.JLabel();
-        lbName = new javax.swing.JLabel();
-        lbLastname = new javax.swing.JLabel();
-        lbPassport = new javax.swing.JLabel();
-        lbNationality = new javax.swing.JLabel();
-        lbAddress = new javax.swing.JLabel();
-        lbEmail = new javax.swing.JLabel();
         lbPayment = new javax.swing.JLabel();
         lbAmount = new javax.swing.JLabel();
         rbCredit = new javax.swing.JRadioButton();
@@ -49,23 +60,29 @@ public class Reservation extends javax.swing.JFrame {
         lbSource = new javax.swing.JLabel();
         lbDestination = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtLastname = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAddress = new javax.swing.JTextArea();
         txtCode = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
         lbPassenger1 = new javax.swing.JLabel();
-        txtPassport = new javax.swing.JTextField();
-        lbPassenger2 = new javax.swing.JLabel();
         cbDestination = new javax.swing.JComboBox<>();
         cbSource = new javax.swing.JComboBox<>();
         txtAmount = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
         dcDate = new com.toedter.calendar.JDateChooser();
-        btnPassengerSave = new javax.swing.JButton();
         txtFlightName = new javax.swing.JTextField();
         btnFlightSave = new javax.swing.JButton();
-        txtNationality1 = new javax.swing.JTextField();
+        lbName = new javax.swing.JLabel();
+        lbLastname = new javax.swing.JLabel();
+        lbPassport = new javax.swing.JLabel();
+        lbNationality = new javax.swing.JLabel();
+        lbAddress = new javax.swing.JLabel();
+        txtLastname = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAddress = new javax.swing.JTextArea();
+        txtPassport = new javax.swing.JTextField();
+        lbPassenger2 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        btnPassengerSave = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtNationality = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 539));
@@ -73,28 +90,10 @@ public class Reservation extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnPaymentSave.setText("Save");
-        getContentPane().add(btnPaymentSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 430, 80, -1));
+        getContentPane().add(btnPaymentSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 420, 80, -1));
 
         lbReservation.setText("Reservation");
-        getContentPane().add(lbReservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
-
-        lbName.setText("Name:");
-        getContentPane().add(lbName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
-
-        lbLastname.setText("Lastname:");
-        getContentPane().add(lbLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
-
-        lbPassport.setText("Passport:");
-        getContentPane().add(lbPassport, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, -1, -1));
-
-        lbNationality.setText("Nationality:");
-        getContentPane().add(lbNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
-
-        lbAddress.setText("Address:");
-        getContentPane().add(lbAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-
-        lbEmail.setText("Email:");
-        getContentPane().add(lbEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 30, 20));
+        getContentPane().add(lbReservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         lbPayment.setText("Method:");
         getContentPane().add(lbPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1, -1));
@@ -111,60 +110,111 @@ public class Reservation extends javax.swing.JFrame {
         getContentPane().add(rbDebit, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, -1, -1));
 
         lbDate.setText("Date:");
-        getContentPane().add(lbDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, -1));
+        getContentPane().add(lbDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
 
         lbPassenger.setText("Payment Information");
         getContentPane().add(lbPassenger, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, -1, -1));
 
         lbCode.setText("Code:");
-        getContentPane().add(lbCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, -1, -1));
+        getContentPane().add(lbCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
         lbFlightName.setText("Flight name:");
-        getContentPane().add(lbFlightName, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
+        getContentPane().add(lbFlightName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         lbSource.setText("Source:");
-        getContentPane().add(lbSource, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 50, -1));
+        getContentPane().add(lbSource, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 50, -1));
 
         lbDestination.setText("Destination:");
-        getContentPane().add(lbDestination, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, -1));
+        getContentPane().add(lbDestination, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 77, 285, 0));
-        getContentPane().add(txtLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 150, -1));
+        getContentPane().add(txtCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 120, -1));
+
+        lbPassenger1.setText("Flight Information");
+        getContentPane().add(lbPassenger1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        cbDestination.setEditable(true);
+        cbDestination.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDestinationActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbDestination, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 320, -1));
+
+        cbSource.setEditable(true);
+        getContentPane().add(cbSource, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 320, -1));
+        getContentPane().add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 150, -1));
+        getContentPane().add(dcDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 320, -1));
+        getContentPane().add(txtFlightName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 150, -1));
+
+        btnFlightSave.setText("Save");
+        btnFlightSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFlightSaveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFlightSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 80, -1));
+
+        lbName.setText("Name:");
+        getContentPane().add(lbName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+
+        lbLastname.setText("Lastname:");
+        getContentPane().add(lbLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, -1, -1));
+
+        lbPassport.setText("Passport:");
+        getContentPane().add(lbPassport, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
+
+        lbNationality.setText("Nationality:");
+        getContentPane().add(lbNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, -1, -1));
+
+        lbAddress.setText("Address:");
+        getContentPane().add(lbAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
+        getContentPane().add(txtLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 150, -1));
 
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
         jScrollPane1.setViewportView(txtAddress);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 340, 120));
-        getContentPane().add(txtCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, 120, -1));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 115, 20));
-
-        lbPassenger1.setText("Flight Information");
-        getContentPane().add(lbPassenger1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, -1));
-        getContentPane().add(txtPassport, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 140, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 340, 120));
+        getContentPane().add(txtPassport, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 210, 140, -1));
 
         lbPassenger2.setText("Passenger Information");
-        getContentPane().add(lbPassenger2, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 58, -1, 10));
-
-        cbDestination.setEditable(true);
-        getContentPane().add(cbDestination, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, 320, -1));
-
-        cbSource.setEditable(true);
-        getContentPane().add(cbSource, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, 320, -1));
-        getContentPane().add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 150, -1));
-        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 130, -1));
-        getContentPane().add(dcDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 320, -1));
+        getContentPane().add(lbPassenger2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 10));
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 130, -1));
 
         btnPassengerSave.setText("Save");
-        getContentPane().add(btnPassengerSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 70, -1));
-        getContentPane().add(txtFlightName, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 150, -1));
+        getContentPane().add(btnPassengerSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 290, 80, -1));
 
-        btnFlightSave.setText("Save");
-        getContentPane().add(btnFlightSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 280, 70, -1));
-        getContentPane().add(txtNationality1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 115, 20));
+        jLabel1.setText("Email:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
+        getContentPane().add(txtNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 130, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 340, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbDestinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDestinationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbDestinationActionPerformed
+
+    private void btnFlightSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlightSaveActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnFlightSaveActionPerformed
+public Map<String, Object> getDataComponents(final Container container) {
+        
+        var dataComponents = new HashMap<String, Object>();
+        
+        for (var component : container.getComponents()) {
+            
+            if (component instanceof JTextComponent) {
+                dataComponents.put(component.getName(), ((JTextComponent) component).getText().trim());
+            }
+            if (component instanceof JComboBox) {
+                dataComponents.put(component.getName(), ((JComboBox) component).getSelectedItem());
+            }
+        }
+        return dataComponents;
+    }
     /**
      * @param args the command line arguments
      */
@@ -195,7 +245,11 @@ public class Reservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reservation().setVisible(true);
+                try {
+                    new Reservation().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -208,6 +262,7 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbDestination;
     private javax.swing.JComboBox<String> cbSource;
     private com.toedter.calendar.JDateChooser dcDate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbAddress;
@@ -215,7 +270,6 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JLabel lbCode;
     private javax.swing.JLabel lbDate;
     private javax.swing.JLabel lbDestination;
-    private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbFlightName;
     private javax.swing.JLabel lbLastname;
     private javax.swing.JLabel lbName;
@@ -236,7 +290,7 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JTextField txtFlightName;
     private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtNationality1;
+    private javax.swing.JTextField txtNationality;
     private javax.swing.JTextField txtPassport;
     // End of variables declaration//GEN-END:variables
 }

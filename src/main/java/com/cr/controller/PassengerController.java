@@ -23,11 +23,11 @@ public class PassengerController {
         _repository.update(model);
     }
 
-    public Passenger find(Predicate<Passenger> filter){
-        return  _repository.find(filter);
+    public Passenger find(Predicate<Passenger> filter) {
+        return _repository.find(filter);
     }
 
-    public List<Passenger> getAll(){
+    public List<Passenger> getAll() {
         return _repository.getAll();
     }
 

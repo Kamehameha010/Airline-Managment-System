@@ -9,12 +9,12 @@ package com.cr.view.internal.flight;
  *
  * @author joel010
  */
-public class FlieghtView extends javax.swing.JInternalFrame {
+public class FlightView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FlieghtView
      */
-    public FlieghtView() {
+    public FlightView() {
         initComponents();
     }
 
@@ -33,14 +33,14 @@ public class FlieghtView extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        txtCode = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        dcDate = new com.toedter.calendar.JDateChooser();
+        cbSource = new javax.swing.JComboBox<>();
+        cbDestination = new javax.swing.JComboBox<>();
+        cbPlane = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,27 +63,32 @@ public class FlieghtView extends javax.swing.JInternalFrame {
         jLabel6.setText("Destination:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
+        btnSave.setText("Save");
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 70, -1));
 
-        jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 240, -1));
+        txtCode.setName("code"); // NOI18N
+        getContentPane().add(txtCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 240, -1));
 
-        jTextField2.setText("jTextField1");
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 240, -1));
+        txtName.setName("name"); // NOI18N
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 240, -1));
 
         jTextField3.setText("jTextField1");
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 210, -1));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 240, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, -1));
+        dcDate.setName("date"); // NOI18N
+        getContentPane().add(dcDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 240, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 240, -1));
+        cbSource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSource.setName("source"); // NOI18N
+        getContentPane().add(cbSource, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 240, -1));
+        cbDestination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDestination.setName("destination"); // NOI18N
+        getContentPane().add(cbDestination, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 240, -1));
+
+        cbPlane.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPlane.setName("plane"); // NOI18N
+        getContentPane().add(cbPlane, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 240, -1));
 
         jLabel7.setText("Flight");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
@@ -93,11 +98,11 @@ public class FlieghtView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cbDestination;
+    private javax.swing.JComboBox<String> cbPlane;
+    private javax.swing.JComboBox<String> cbSource;
+    private com.toedter.calendar.JDateChooser dcDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -105,8 +110,8 @@ public class FlieghtView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

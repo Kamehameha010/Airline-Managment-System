@@ -7,13 +7,13 @@ public class Payment {
     private int idPayment;
     private int idPassenger;
     private double amount;
-    private PayMethod payMethod;
+    private String payMethod;
     private Date date;
 
     public Payment() {
     }
 
-    public Payment(int idPassenger, double amount, PayMethod payMethod, Date date) {
+    public Payment(int idPassenger, double amount, String payMethod, Date date) {
         this.idPassenger = idPassenger;
         this.amount = amount;
         this.payMethod = payMethod;
@@ -44,11 +44,11 @@ public class Payment {
         this.amount = amount;
     }
 
-    public PayMethod getPayMethod() {
+    public String getPayMethod() {
         return payMethod;
     }
 
-    public void setPayMethod(PayMethod payMethod) {
+    public void setPayMethod(String payMethod) {
         this.payMethod = payMethod;
     }
 

@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import com.cr.db.IConnection;
-import com.cr.db.jdbc.helper.IQueryHelper;
-import com.cr.db.jdbc.helper.PreparedStamentHelper;
 import com.cr.db.jdbc.mysql.MysqlConnection;
 import com.cr.db.jdbc.queries.FlightQuery;
+import com.cr.helper.IQueryHelper;
+import com.cr.helper.PreparedStamentHelper;
 import com.cr.model.Flight;
 import com.cr.services.repository.IRepositoryServices;
 
