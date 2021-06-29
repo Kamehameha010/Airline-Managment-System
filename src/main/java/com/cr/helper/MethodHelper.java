@@ -5,6 +5,8 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.cr.services.validation.data.DataValidation;
+
 public class MethodHelper<T> implements IMethodHelper<T> {
 
     @Override
@@ -17,10 +19,11 @@ public class MethodHelper<T> implements IMethodHelper<T> {
     }
 
     @Override
-    public void invokeSetter(T obj, String propertyName, Object propertyValue) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException {
+    public void invokeSetter(T obj, String propertyName, Object propertyValue)
+            throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException {
         PropertyDescriptor pd = new PropertyDescriptor(propertyName, obj.getClass());
         Method setter = pd.getWriteMethod();
-        setter.invoke(obj, propertyValue);
+        setter.invoke(obj, DataValidation.verifyObject(propertyValue));
     }
 
 }

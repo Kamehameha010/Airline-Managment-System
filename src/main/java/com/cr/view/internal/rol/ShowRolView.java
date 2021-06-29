@@ -68,7 +68,7 @@ public class ShowRolView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnNewActionPerformed
 
 

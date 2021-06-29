@@ -5,11 +5,20 @@
  */
 package com.cr.view.internal.employee;
 
-import java.awt.Container;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.JComboBox;
-import javax.swing.text.JTextComponent;
+import com.cr.controller.EmployeeController;
+import java.io.IOException;
+
+import com.cr.controller.RolController;
+import com.cr.model.Employee;
+import com.cr.model.Rol;
+import com.cr.tools.SwingUtility;
+import com.cr.tools.component.combobox.CustomComboBoxModel;
+import com.cr.tools.component.combobox.RolListCellRender;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,11 +29,20 @@ public class EmployeeView extends javax.swing.JInternalFrame {
     /**
      * Creates new form EmployeeView
      */
-    public EmployeeView() {
-        initComponents();
-    }
-
+    private SwingUtility _utility;
+    private RolController _rolController;
+    private EmployeeController _empController;
+    private CustomComboBoxModel<Rol> _cbModel;
     
+
+    public EmployeeView() throws IOException {
+        _utility = new SwingUtility();
+        _rolController = new RolController();
+        _cbModel = new CustomComboBoxModel<>(_rolController.getAll());
+        _empController = new EmployeeController();
+        initComponents();
+        cbRol.setRenderer(new RolListCellRender());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,10 +63,9 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         txtUsername = new javax.swing.JTextField();
         txtIdentification = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        txtLadtname = new javax.swing.JTextField();
+        txtLastname = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        cbRol = new javax.swing.JComboBox<>();
+        cbRol = new javax.swing.JComboBox<>(_cbModel);
         btnSave = new javax.swing.JButton();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,18 +98,19 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         getContentPane().add(txtIdentification, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 250, -1));
 
         txtName.setName("name"); // NOI18N
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 250, -1));
 
-        jTextField4.setText("jTextField1");
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 250, -1));
-
-        txtLadtname.setName("lastname"); // NOI18N
-        getContentPane().add(txtLadtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 250, -1));
+        txtLastname.setName("lastname"); // NOI18N
+        getContentPane().add(txtLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 250, -1));
 
         txtPassword.setName("password"); // NOI18N
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 250, -1));
 
-        cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbRol.setName("idRol"); // NOI18N
         getContentPane().add(cbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 250, -1));
 
@@ -108,13 +126,29 @@ public class EmployeeView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        
+
+        var map = _utility.getDataComponents(getContentPane());
+        map.put("idRol", Rol.class.cast(map.get("idRol")).getIdRol());
+        
+        try {
+            var employee = (Employee) _utility.intanceObject(Employee.class, map);
+            _empController.create(employee);
+            JOptionPane.showMessageDialog(null, "Succesful");
+        } catch (NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException | IllegalArgumentException | IntrospectionException ex) {
+            Logger.getLogger(EmployeeView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "internal error, try again");
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+       
+    }//GEN-LAST:event_txtNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cbRol;
+    private javax.swing.JComboBox<Rol> cbRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -122,9 +156,8 @@ public class EmployeeView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField txtIdentification;
-    private javax.swing.JTextField txtLadtname;
+    private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;

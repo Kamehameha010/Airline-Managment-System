@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TableMod",
+            "request": "launch",
+            "mainClass": "com.cr.tools.component.table.TableMod",
+            "projectName": "AirlineSystem"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "com.cr.tools.component.table.Test",
+            "projectName": "AirlineSystem"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

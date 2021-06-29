@@ -91,12 +91,12 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+        
         System.exit(0);
     }// GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSigninActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSigninActionPerformed
-        // TODO add your handling code here:
+        
         EmployeeViewModel model = new EmployeeViewModel();
         model.setUsername(txtUsername.getText());
         model.setPassword(new String(txtPassword.getPassword()));

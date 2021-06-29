@@ -68,9 +68,8 @@ public class FlightRepository implements IRepositoryServices<Flight> {
 
         } catch (SQLException | InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | NoSuchMethodException | SecurityException | IntrospectionException e) {
-            System.err.println("Error");
+            System.err.println("Error: "+e.getMessage());
         } finally {
-
             _connection.close(conn);
         }
 

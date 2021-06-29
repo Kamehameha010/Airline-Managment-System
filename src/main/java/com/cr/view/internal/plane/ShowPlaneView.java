@@ -5,17 +5,28 @@
  */
 package com.cr.view.internal.plane;
 
+import java.io.IOException;
+
+import com.cr.controller.PlaneController;
+import com.cr.model.Plane;
+import com.cr.tools.component.table.CustomTableModel;
+
 /**
  *
  * @author joel010
  */
 public class ShowPlaneView extends javax.swing.JInternalFrame {
-
+    private PlaneController _controller;
+    private CustomTableModel dataModel;
+    private Plane plane;
     /**
      * Creates new form ShowPlane
+     * @throws IOException
      */
-    public ShowPlaneView() {
+    public ShowPlaneView() throws IOException {
+        _controller = new PlaneController();
         initComponents();
+        setTableModel();
 
     }
 
@@ -54,6 +65,11 @@ public class ShowPlaneView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbPlanes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPlanesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbPlanes);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 380, 160));
@@ -65,10 +81,21 @@ public class ShowPlaneView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnNewActionPerformed
 
+    private void tbPlanesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPlanesMouseClicked
+        int pos = tbPlanes.getSelectedRow();
+        plane = (Plane) dataModel.getSelectedRow(pos);
+        System.out.println(plane);
+    }//GEN-LAST:event_tbPlanesMouseClicked
 
+    private void setTableModel() {
+        dataModel = new CustomTableModel(_controller.getAll(),
+                new String[] { "ID", "NAME", "CODE", "CAPACITY"});
+        tbPlanes.setModel(dataModel);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNew;
     private javax.swing.JScrollPane jScrollPane1;

@@ -2,8 +2,6 @@ package com.cr.start;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import com.jcabi.aspects.Async;
 
@@ -19,7 +17,7 @@ public class App {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
+                
                 e.printStackTrace();
             }
             return "value";

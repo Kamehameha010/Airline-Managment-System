@@ -5,17 +5,17 @@
  */
 package com.cr.view.external;
 
-import com.cr.controller.PassengerController;
-import com.cr.model.Passenger;
 import java.awt.Container;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
+
+import com.cr.controller.PassengerController;
 
 /**
  *
@@ -193,11 +193,11 @@ public class Reservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbDestinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDestinationActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_cbDestinationActionPerformed
 
     private void btnFlightSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlightSaveActionPerformed
-        // TODO add your handling code here:
+
         
     }//GEN-LAST:event_btnFlightSaveActionPerformed
 public Map<String, Object> getDataComponents(final Container container) {
