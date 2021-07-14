@@ -62,7 +62,7 @@ public class Payment {
 
     @Override
     public String toString() {
-        return String.format("Payment: {id_payment:%d, id_passenger:%d, amount:%d, pay_method:%s, date:%s}", idPayment,
+        return String.format("Payment: {id_payment:%d, id_passenger:%d, amount:%.2f, pay_method:%s, date:%s}", idPayment,
                 idPassenger, amount, payMethod, date);
     }
 

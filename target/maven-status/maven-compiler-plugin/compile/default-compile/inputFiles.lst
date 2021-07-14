@@ -22,6 +22,7 @@ C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\view\in
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\controller\AccessController.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\repository\IRepositoryServices.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\model\Flight.java
+C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\view\external\Flight\FlightListView.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\helper\MethodHelper.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\model\Rol.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\helper\MapHelper.java
@@ -30,10 +31,10 @@ C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\service
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\repository\jdbc\PlaneRepository.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\validation\component\EmaliValidation.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\repository\jdbc\RolRepository.java
+C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\view\external\Reservation\ReservationView.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\db\IConnection.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\tools\SwingUtility.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\db\jdbc\queries\RolQuery.java
-C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\view\external\Reservation.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\db\jdbc\queries\PlaneQuery.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\repository\jdbc\EmployeeRepository.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\db\jdbc\queries\EmployeeQuery.java

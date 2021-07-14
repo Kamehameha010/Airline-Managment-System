@@ -229,7 +229,6 @@ public class MainView extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem6ActionPerformed
 
         try {
-
             var planeListView = new ShowPlaneView();
             dskPanel.add(planeListView);
             planeListView.show();

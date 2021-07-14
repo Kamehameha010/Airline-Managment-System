@@ -1,7 +1,7 @@
 package com.cr.tools;
 
-import java.awt.Container;
 import java.awt.Component;
+import java.awt.Container;
 import java.beans.IntrospectionException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.text.JTextComponent;
 
 import com.cr.helper.IMethodHelper;
@@ -32,7 +33,8 @@ public class SwingUtility<T> {
                 case "JTextField", "JTextArea", "JPasswordField" -> dataComponents.put(component.getName(),
                         ConvertToTextComponent(component));
                 case "JComboBox" -> dataComponents.put(component.getName(), ConvertToJComboBox(component));
-                case "JDateChooser" -> dataComponents.put(component.getName(), JDateChooser.class.cast(component).getDate());
+                case "JDateChooser" -> dataComponents.put(component.getName(),
+                        JDateChooser.class.cast(component).getDate());
             }
         }
         return dataComponents;
@@ -57,6 +59,9 @@ public class SwingUtility<T> {
 
     private Object validString(Object value) {
         if (isNumeric(value.toString())) {
+            if (value.toString().contains(".")) {
+                return Double.parseDouble(value.toString());
+            }
             return Integer.parseInt(value.toString());
         } else if (isBoolean(value.toString())) {
             return Boolean.parseBoolean(value.toString());
@@ -80,8 +85,8 @@ public class SwingUtility<T> {
         return regex.matcher(str).matches();
     }
 
-    private Object ConvertToTextComponent(final Component comp) {
-        return JTextComponent.class.cast(comp).getText();
+    private Object ConvertToTextComponent(final Component component) {
+        return JTextComponent.class.cast(component).getText();
     }
 
     private Object ConvertToJComboBox(final Component comp) {

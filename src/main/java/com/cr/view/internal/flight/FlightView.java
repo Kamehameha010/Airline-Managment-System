@@ -52,7 +52,7 @@ public class FlightView extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -67,7 +67,7 @@ public class FlightView extends javax.swing.JInternalFrame {
         dcDate = new com.toedter.calendar.JDateChooser();
         cbSource = new javax.swing.JComboBox<>();
         cbDestination = new javax.swing.JComboBox<>();
-        cbPlane = new javax.swing.JComboBox<>(_cbModel);
+        cbPlane = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -107,13 +107,11 @@ public class FlightView extends javax.swing.JInternalFrame {
         dcDate.setName("date"); // NOI18N
         getContentPane().add(dcDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 240, -1));
 
-        cbSource.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GERMANY", "USA", "CANADA", "COLOMBIA", "ITALY" }));
         cbSource.setName("source"); // NOI18N
         getContentPane().add(cbSource, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, -1));
 
-        cbDestination.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDestination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GERMANY", "USA", "CANADA", "COLOMBIA", "ITALY" }));
         cbDestination.setName("destination"); // NOI18N
         getContentPane().add(cbDestination, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 240, -1));
 
@@ -149,7 +147,7 @@ public class FlightView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbDestination;
-    private javax.swing.JComboBox<Plane> cbPlane;
+    private javax.swing.JComboBox<String> cbPlane;
     private javax.swing.JComboBox<String> cbSource;
     private com.toedter.calendar.JDateChooser dcDate;
     private javax.swing.JLabel jLabel1;
