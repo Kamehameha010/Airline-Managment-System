@@ -24,7 +24,7 @@ public class FlightListView extends javax.swing.JFrame {
      * Creates new form FlightListView
      */
     private FlightController _controller;
-    private CustomTableModel dataModel;
+    private CustomTableModel<Flight> model;
     private Flight flight;
 
     public FlightListView() throws IOException {
@@ -111,8 +111,8 @@ public class FlightListView extends javax.swing.JFrame {
     private void tbFlightMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tbFlightMouseClicked
         if (evt.getClickCount() == 2) {
             int pos = tbFlight.getSelectedRow();
-            flight = (Flight) dataModel.getSelectedRow(pos);
-            
+            flight = (Flight) model.getSelectedRow(pos);
+
             try {
                 var reservation = new ReservationView(flight);
                 reservation.setVisible(true);
@@ -124,7 +124,7 @@ public class FlightListView extends javax.swing.JFrame {
     }// GEN-LAST:event_tbFlightMouseClicked
 
     private void jScrollPane1AncestorAdded(javax.swing.event.AncestorEvent evt) {// GEN-FIRST:event_jScrollPane1AncestorAdded
-        
+
     }// GEN-LAST:event_jScrollPane1AncestorAdded
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jScrollPane1MouseClicked
@@ -132,9 +132,9 @@ public class FlightListView extends javax.swing.JFrame {
     }// GEN-LAST:event_jScrollPane1MouseClicked
 
     private void setTableModel() {
-        dataModel = new CustomTableModel(_controller.getAll(),
+        model = new CustomTableModel<Flight>(_controller.getAll(),
                 new String[] { "ID", "NAME", "CODE", "SOURCE", "DESTINATION", "DATE" });
-        tbFlight.setModel(dataModel);
+        tbFlight.setModel(model);
     }
 
     /**

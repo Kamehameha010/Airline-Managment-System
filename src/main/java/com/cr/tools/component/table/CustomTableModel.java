@@ -4,31 +4,30 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-public class CustomTableModel extends AbstractTableModel {
+public class CustomTableModel<T> extends AbstractTableModel {
 
-    private List<?> rows;
-    private String[] columnNames;
+    private String[] m_names /* = { "ID", "CODE", "NAME", "SOURCE", "DESTINATION", "DATE" } */;
 
-    public CustomTableModel(List<?> rows, String[] columnNames) {
-        this.rows = rows;
-        this.columnNames = columnNames;     
+    private List<T> m_data;
+
+    public CustomTableModel(List<T> data, String[] names) {
+        m_data = data;
+        m_names = names;
     }
 
     @Override
     public int getRowCount() {
-        return this.rows.size();
+        return m_data.size();
     }
 
     @Override
     public int getColumnCount() {
-        return this.columnNames.length;
+        return m_names.length;
     }
 
-    public String getColumnName​(int column){
-        return columnNames[column];
-    }
-    public Object getSelectedRow(int row) {
-        return this.rows.get(row);
+    @Override
+    public String getColumnName(int column) {
+        return m_names[column];
     }
 
     @Override
@@ -36,6 +35,8 @@ public class CustomTableModel extends AbstractTableModel {
         return null;
     }
 
-    
-}
+    public T getSelectedRow(int pos) {
+        return m_data.get(pos);
+    }
 
+}

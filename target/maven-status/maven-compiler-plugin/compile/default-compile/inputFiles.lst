@@ -26,11 +26,13 @@ C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\view\ex
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\helper\MethodHelper.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\model\Rol.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\helper\MapHelper.java
+C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\tools\component\table\FilterFlight.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\view\internal\access\LoginView.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\repository\ICreate.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\repository\jdbc\PlaneRepository.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\validation\component\EmaliValidation.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\services\repository\jdbc\RolRepository.java
+C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\tools\component\table\IFilterTable.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\view\external\Reservation\ReservationView.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\db\IConnection.java
 C:\Users\joel010\Desktop\Proga\java12\AirlineSystem\src\main\java\com\cr\tools\SwingUtility.java

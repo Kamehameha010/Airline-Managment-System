@@ -67,7 +67,7 @@ public class FlightView extends javax.swing.JInternalFrame {
         dcDate = new com.toedter.calendar.JDateChooser();
         cbSource = new javax.swing.JComboBox<>();
         cbDestination = new javax.swing.JComboBox<>();
-        cbPlane = new javax.swing.JComboBox<>();
+        cbPlane = new javax.swing.JComboBox<>(_cbModel);
         jLabel7 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,8 +129,7 @@ public class FlightView extends javax.swing.JInternalFrame {
 
         var map = _utility.getDataComponents(getContentPane());
         map.put("idPlane", Plane.class.cast(map.get("idPlane")).getIdPlane());
-        System.out.println(map);
-
+       
         try {
             var flight = (Flight) _utility.intanceObject(Flight.class, map);     
             _flightController.create(flight);
@@ -147,7 +146,7 @@ public class FlightView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbDestination;
-    private javax.swing.JComboBox<String> cbPlane;
+    private javax.swing.JComboBox<Plane> cbPlane;
     private javax.swing.JComboBox<String> cbSource;
     private com.toedter.calendar.JDateChooser dcDate;
     private javax.swing.JLabel jLabel1;

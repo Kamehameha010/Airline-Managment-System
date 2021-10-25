@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import com.cr.controller.EmployeeController;
 import com.cr.model.Employee;
+import com.cr.model.Flight;
 import com.cr.tools.component.table.CustomCellRender;
 import com.cr.tools.component.table.CustomTableModel;
 
@@ -24,7 +25,7 @@ public class ShowEmployeeView extends javax.swing.JInternalFrame {
      * Creates new form ShowEmployeeView
      */
     private EmployeeController _controller;
-    private CustomTableModel dataModel;
+    private CustomTableModel<Employee> model;
     private CustomCellRender tableRender;
     private Employee employee;
 
@@ -42,7 +43,8 @@ public class ShowEmployeeView extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         txtSearch = new javax.swing.JTextField();
@@ -71,39 +73,33 @@ public class ShowEmployeeView extends javax.swing.JInternalFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNew)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(156, 214, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 236, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNew))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 6, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 262, Short.MAX_VALUE)))
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addContainerGap(49, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup().addComponent(btnNew)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup().addGap(156, 214, Short.MAX_VALUE).addComponent(jLabel1)
+                                .addGap(0, 236, Short.MAX_VALUE))));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnNew))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup().addGap(0, 6, Short.MAX_VALUE).addComponent(jLabel1)
+                                .addGap(0, 262, Short.MAX_VALUE))));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -111,7 +107,7 @@ public class ShowEmployeeView extends javax.swing.JInternalFrame {
     private void tbEmployeeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tbEmployeeMouseClicked
         // TODO add your handling code here:
         int pos = tbEmployee.getSelectedRow();
-        employee = (Employee) dataModel.getSelectedRow(pos);
+        employee = (Employee) model.getSelectedRow(pos);
     }
     // GEN-LAST:event_tbEmployeeMouseClicked
 
@@ -126,8 +122,9 @@ public class ShowEmployeeView extends javax.swing.JInternalFrame {
     }// GEN-LAST:event_btnNewActionPerformed
 
     private void setTableModel() {
-        dataModel = new CustomTableModel(_controller.getAll(), new String[]{"ID", "NAME", "LASTNAME", "USERNAME", "PASSWORD", "ROL"});
-        tbEmployee.setModel(dataModel);
+        model = new CustomTableModel<Employee>(_controller.getAll(),
+                new String[] { "ID", "Name", "Lastname", "Username", "Password", "Rol" });
+        tbEmployee.setModel(model);
 
     }
 

@@ -7,10 +7,7 @@ import java.sql.ResultSet;
 public interface ISQLConnection {
 
     Connection connect();
-
     void close(Connection conn);
-
     void close(PreparedStatement pstm);
-
     void close(ResultSet rs);
 }
